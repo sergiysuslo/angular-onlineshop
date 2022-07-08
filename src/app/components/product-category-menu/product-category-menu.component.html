@@ -1,0 +1,19 @@
+<div class="menu-sidebar-content js-scrollbar1">
+  <nav class="navbar-sidebar">
+    <h6>Kategorien</h6>
+    <hr>
+    <ul class="list-unstyled navbar-list">
+      <li *ngFor="let item of productCategories">
+
+        <div class="card">
+          <div class="card-body" style="padding: 10px ;">
+            <a routerLink="/category/{{ item.id}}/{{ item.categoryName }}" routerLinkActive="active-link">
+               <i class="fa-solid fa-{{productCategoryIcon[item.id - 1]}}"></i>{{ item.categoryName }}
+            </a>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </nav>
+</div>

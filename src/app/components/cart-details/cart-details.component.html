@@ -1,0 +1,50 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <div *ngIf="cartItems.length > 0">
+        <table class="table table-bordered">
+          <tr>
+            <th width = "20%">Artikel</th>
+            <th width = "50%">Beschreibung</th>
+            <th width = "30%"></th>
+          </tr>
+
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <img src="{{item.imageUrl}}" class="img-responsive" width="150px" />
+            </td>
+            <td>
+              <p> {{ item.name }}</p>
+              <p> {{ item.unitPrice | currency: "EUR":true}} </p>
+            </td>
+            <td>
+              <div class="items">
+                <label>Menge:</label>
+
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-left: 10px;">
+                  <button (click)="decrementQuantity(item)" class="btn btn-secondary btn-sm"> <i class="fas fa-minus"></i></button>
+                  <div style="width:50px ; text-align: center;">{{ item.quantity }}</div>
+                  <button (click)="incrementQuantity(item)" class="btn btn-secondary btn-sm"> <i class="fas fa-plus"></i></button>
+                </div>
+
+              </div>
+              <p class="mt-2">Zwischensumme: {{item.quantity * item.unitPrice | currency: "EUR": true}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td style="font-weight: bold">
+              <p>Insgesamt: {{totalQuantity}} Artikel</p>
+              <p>Summe: {{ totalPrice | currency: 'EUR' : true}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12"> Einkaufskorb ist leer. </div>
+
+
+    </div>
+  </div>
+</div>

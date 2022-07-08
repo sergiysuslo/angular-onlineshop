@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <h5>{{ categoryName }}</h5>
+      <hr />
+      <div class="row">
+        <div *ngFor="let tempProduct of products" class="col-sm-auto">
+
+          <ng-template #content>  {{tempProduct.name}} <hr> {{tempProduct.description}}</ng-template>
+            <div class="card" style="width: 14em">
+              <img
+              [ngbTooltip]="content"
+              placement="start"
+              [openDelay]="300" [closeDelay]="500"
+                src="{{ tempProduct.imageUrl }}"
+                class="img-fluid img-thumbnail"
+              />
+              <div class="card-body">
+                <h6 class="card-title">{{ tempProduct.name }}</h6>
+                <div class="price" style="color: rgb(158, 14, 14)">
+                  {{ tempProduct.unitPrice | currency: "EUR":true }}
+                </div>
+                <br>
+                  <button (click)="addToCart(tempProduct)"  type="button" class="btn btn-outline-secondary" id="toastAlert">
+                      <i class="fa-solid fa-cart-plus"></i>
+                      In den Warenkorb
+                  </button>
+              </div>
+            </div>
+
+
+          <hr />
+        </div>
+
+        <div
+          *ngIf="products?.length == 0"
+          class="alert alert-warning col-md-12"
+        >
+          Keine Artikel gefunden.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<simple-notifications></simple-notifications>
+
+
